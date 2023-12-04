@@ -43,7 +43,13 @@ modules:
         path: startvesktop
 
       - type: file
-        path: dev.vencord.Vesktop.metainfo.xml
+        url: https://raw.githubusercontent.com/Vencord/Vesktop/main/meta/dev.vencord.Vesktop.metainfo.xml
+        sha512: fec7f0d1539c5aff5f4471996ab8912d3e1f2366b9d7f5e5a251835af4a00a8d442bd43f4bd648b0e748245f2fb7981d5e1830b6c6efe3275c9d879ff8e0c9f0
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/Vencord/Vesktop/contents/meta/dev.vencord.Vesktop.metainfo.xml
+          version-query: .sha
+          url-query: .download_url
 
       - type: file
         url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-0.4.4.AppImage
