@@ -47,7 +47,7 @@ modules:
 
       - type: file
         url: https://raw.githubusercontent.com/Vencord/Vesktop/main/meta/dev.vencord.Vesktop.metainfo.xml
-        sha512: e1518be50b3b8f491f6544fc81877f59ca01012de7ecde9f65f66cbec55328368536495d371a2b11e72b78445406717f5b5cdacdb3b36e45d3caa76c5cbd94b4
+        sha512: 98aade6660e8757767a9966099a0a9d7e22a609966f9719a745db348aa5b86379290f65a2e27b46ae70d067bddc19d6394b2b6ad7c98d1b0f966ecf8ca318304
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/contents/meta/dev.vencord.Vesktop.metainfo.xml
@@ -55,18 +55,18 @@ modules:
           url-query: .download_url
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.1.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.2.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: 33d3a48231019cf91897a9ee8edf11a4a401a0741ab0c9df588afb4cee0e0b7baaa45487eb7353f9880addbb336a6c1741fce91a21b0a425eeff98eea5398cb6
+        sha512: 05ff8bfe6ed72591c3f983507cfa1a453a2661dbd8e900c1d20207dd2aada6bba95fc126d4481d759da828f77a135986792c402ef8e4d8f9594f24ea847888fd
         only-arches: [x86_64]
         x-checker-data:
           type: electron-updater
           url: https://github.com/Vencord/Vesktop/releases/latest/download/latest-linux.yml
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.1-arm64.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.2-arm64.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: c7477f2e75fd6fd6263939bc090fe1bf5b1724e592710de301e898a278c60d41e01551607f3d124176764c09a903adbd3d27cc93d783c06f6632be03bf321159
+        sha512: 8486174cf2e75c7fa9956a79c3516585841dff938a534ce3f4f1554f9aa72d55691aa31a4274e1a8970806b559e52af1fb366c399e57938e053da2592d9a39b2
         only-arches: [aarch64]
         x-checker-data:
           type: electron-updater
