@@ -48,7 +48,7 @@ modules:
 
       - type: file
         url: https://raw.githubusercontent.com/Vencord/Vesktop/main/meta/dev.vencord.Vesktop.metainfo.xml
-        sha512: 98aade6660e8757767a9966099a0a9d7e22a609966f9719a745db348aa5b86379290f65a2e27b46ae70d067bddc19d6394b2b6ad7c98d1b0f966ecf8ca318304
+        sha512: 4e652b4d07ea1bb43c66199a2f1e8872edfb1c5e47c08e68c4b6025d83feb0d1fabf66a4deeaf6799bfa870a0e088219ac49a3aaaa8958bc6cf0d78ac951ddd0
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/contents/meta/dev.vencord.Vesktop.metainfo.xml
