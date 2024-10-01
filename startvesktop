@@ -19,6 +19,7 @@ if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
         echo "Wayland socket is available, running natively on Wayland."
         echo "To disable, remove the --socket=wayland permission."
         FLAGS+=(--ozone-platform-hint=auto)
+        FLAGS+=(--enable-wayland-ime)
     fi
 fi
 
