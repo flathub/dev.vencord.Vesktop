@@ -17,6 +17,7 @@ finish-args:
   - --share=ipc
   - --share=network
   - --talk-name=org.kde.StatusNotifierWatcher # Tray functionalities on KDE
+  - --talk-name=com.canonical.AppMenu.Registrar
   - --device=all # Needed for GPU acceleration and the webcam
   - --filesystem=xdg-videos:ro
   - --filesystem=xdg-pictures:ro
