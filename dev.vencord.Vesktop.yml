@@ -33,7 +33,7 @@ modules:
     build-commands:
       - chmod +x Vesktop.AppImage
       - ./Vesktop.AppImage --appimage-extract
-      - desktop-file-edit --set-key="Exec" --set-value="startvesktop" --set-icon=$FLATPAK_ID
+      - desktop-file-edit --set-key="Exec" --set-value="startvesktop %U" --set-icon=$FLATPAK_ID
         squashfs-root/vesktop.desktop
       - |
         for icon in 16 32 48 64 128 256 512; do
