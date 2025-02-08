@@ -50,13 +50,14 @@ modules:
         path: startvesktop
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/dev.vencord.Vesktop.metainfo.xml
+        url: https://github.com/Vencord/Vesktop/releases/download/v1.5.5/dev.vencord.Vesktop.metainfo.xml
         sha512: f23293f0ac282642958eb00048cd52de913782b7dd403ffbfad764e5070ecf84f45c35f56d311026148166457f6cf0d1204e258610b86187bae7fa0dfbca7423
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/releases/latest
-          version-query: '.tag_name | sub("v"; "")'
-          url-query: '.assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml") | .browser_download_url'
+          version-query: .tag_name | sub("v"; "")
+          url-query: .assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml")
+            | .browser_download_url
 
       - type: file
         url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.5.AppImage
