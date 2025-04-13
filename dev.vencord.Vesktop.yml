@@ -1,11 +1,11 @@
 app-id: dev.vencord.Vesktop
 
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: &runtime-version '24.08'
 sdk: org.freedesktop.Sdk
 
 base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
+base-version: *runtime-version
 
 command: startvesktop
 separate-locales: false
@@ -17,6 +17,7 @@ finish-args:
   - --share=ipc
   - --share=network
   - --talk-name=org.kde.StatusNotifierWatcher # Tray functionalities on KDE
+  - --talk-name=com.canonical.AppMenu.Registrar
   - --device=all # Needed for GPU acceleration and the webcam
   - --filesystem=xdg-videos:ro
   - --filesystem=xdg-pictures:ro
@@ -32,11 +33,13 @@ modules:
     build-commands:
       - chmod +x Vesktop.AppImage
       - ./Vesktop.AppImage --appimage-extract
-      - desktop-file-edit --set-key="Exec" --set-value="startvesktop" --set-icon=$FLATPAK_ID
+      - desktop-file-edit --set-key="Exec" --set-value="startvesktop %U" --set-icon=$FLATPAK_ID
         squashfs-root/vesktop.desktop
-      - install -D squashfs-root/usr/share/icons/hicolor/512x512/apps/vesktop.png
-        /app/share/icons/hicolor/512x512/apps/dev.vencord.Vesktop.png
-      - install -D squashfs-root/usr/share/icons/hicolor/16x16/apps/vesktop.png /app/share/icons/hicolor/16x16/apps/dev.vencord.Vesktop.png
+      - |
+        for icon in 16 32 48 64 128 256 512; do
+          install -D squashfs-root/usr/share/icons/hicolor/${icon}x${icon}/apps/vesktop.png \
+              /app/share/icons/hicolor/${icon}x${icon}/apps/dev.vencord.Vesktop.png
+        done
       - install -D squashfs-root/vesktop.desktop /app/share/applications/dev.vencord.Vesktop.desktop
       - install -Dm755 startvesktop /app/bin/startvesktop
       - install -D dev.vencord.Vesktop.metainfo.xml -t /app/share/metainfo/
@@ -48,27 +51,27 @@ modules:
         path: startvesktop
 
       - type: file
-        url: https://raw.githubusercontent.com/Vencord/Vesktop/main/meta/dev.vencord.Vesktop.metainfo.xml
-        sha512: 5bc9cfcd6e0ce4ebc75af542b8cff2d284963858cdde39ac268e8f3f12e17f4607f74f02d0105a0de5192930d4885616f627455b43c0c7317145bb7377c62613
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/dev.vencord.Vesktop.metainfo.xml
+        sha512: f23293f0ac282642958eb00048cd52de913782b7dd403ffbfad764e5070ecf84f45c35f56d311026148166457f6cf0d1204e258610b86187bae7fa0dfbca7423
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/Vencord/Vesktop/contents/meta/dev.vencord.Vesktop.metainfo.xml
-          version-query: '.sha'
-          url-query: '.download_url'
+          url: https://api.github.com/repos/Vencord/Vesktop/releases/latest
+          version-query: '.tag_name | sub("v"; "")'
+          url-query: '.assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml") | .browser_download_url'
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.3.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.5.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: bd0f759f551b063e5c8ce4fa419d703901814b9a073cf129c3e26c1595d780028fafd5c2c3a0823382fce0d3dc7e08fbaec3187dcf34aa292f1525ec0534d655
+        sha512: 7f372249e231fe2eb429999c129badd64109d58adc0d656ee8d43d9d707a3ff1935c35dbb53c713aebf9f9e1adcdeebd74b53502659f9179edf5351ffe0f37c8
         only-arches: [x86_64]
         x-checker-data:
           type: electron-updater
           url: https://github.com/Vencord/Vesktop/releases/latest/download/latest-linux.yml
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.3-arm64.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.5-arm64.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: f91c4a33628ffa296cc655994347929c3d6bc116f454677f0b619ca0e2b9fdf7d325cdbdeee6ec306532a52f053ac1cbff6bd6a012b226d1e92630be2593b12e
+        sha512: 048f9c0d2a09844d040a531a524d0977a90475c6f8e6deee7a63c9cdcae7076536730767262fea65f632ac294e0ffb2e52ed04f593224e24103a6c3a6ab203ed
         only-arches: [aarch64]
         x-checker-data:
           type: electron-updater
