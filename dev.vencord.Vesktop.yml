@@ -50,27 +50,28 @@ modules:
         path: startvesktop
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/dev.vencord.Vesktop.metainfo.xml
-        sha512: f23293f0ac282642958eb00048cd52de913782b7dd403ffbfad764e5070ecf84f45c35f56d311026148166457f6cf0d1204e258610b86187bae7fa0dfbca7423
+        url: https://github.com/Vencord/Vesktop/releases/download/v1.5.6/dev.vencord.Vesktop.metainfo.xml
+        sha512: 3dadc9947663ba48ecd315da5a1a3680d03a06e94299260b5652e1a0cba96b8ea1d5381f2d730ec3d7737701f9836a48e4f4c35d44b031050fb324088139f077
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/releases/latest
-          version-query: '.tag_name | sub("v"; "")'
-          url-query: '.assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml") | .browser_download_url'
+          version-query: .tag_name | sub("v"; "")
+          url-query: .assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml")
+            | .browser_download_url
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.5.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.6.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: 7f372249e231fe2eb429999c129badd64109d58adc0d656ee8d43d9d707a3ff1935c35dbb53c713aebf9f9e1adcdeebd74b53502659f9179edf5351ffe0f37c8
+        sha512: 13881c0e4b48202dac2f2dc98dce2954dd669413c06c7390ec2959f52516b9f8c522e8cd8908fc45c4108b8f01e583b268f55b65ed7d3765409d789bf5d1d4fd
         only-arches: [x86_64]
         x-checker-data:
           type: electron-updater
           url: https://github.com/Vencord/Vesktop/releases/latest/download/latest-linux.yml
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.5-arm64.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.6-arm64.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: 048f9c0d2a09844d040a531a524d0977a90475c6f8e6deee7a63c9cdcae7076536730767262fea65f632ac294e0ffb2e52ed04f593224e24103a6c3a6ab203ed
+        sha512: 426b97362402470a6b01998a35f256320734b97d2dc8681826d8e10ba072bb83b2a79e6fa1fe1c1e36ddb859a324582ae2d1887efb905c3c340d36da1e106663
         only-arches: [aarch64]
         x-checker-data:
           type: electron-updater
