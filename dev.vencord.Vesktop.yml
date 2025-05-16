@@ -12,8 +12,7 @@ separate-locales: false
 
 finish-args:
   - --socket=pulseaudio
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --share=ipc
   - --share=network
   - --talk-name=org.kde.StatusNotifierWatcher # Tray functionalities on KDE
