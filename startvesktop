@@ -15,14 +15,14 @@ if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
         WAYLAND_SOCKET="$XDG_RUNTIME_DIR/$WAYLAND_SOCKET"
     fi
 
-    if [[ -e "$WAYLAND_SOCKET" ]]; then
-        echo "Wayland socket is available, running natively on Wayland."
-        echo "To disable, remove the --socket=wayland permission."
-        FLAGS+=(--ozone-platform-hint=auto)
-        FLAGS+=(--enable-wayland-ime)
-        FLAGS+=(--wayland-text-input-version=3)
-    fi
+    echo "Running on native Wayland"
+    FLAGS+=(--ozone-platform-hint=auto)
+    FLAGS+=(--enable-wayland-ime)
+    FLAGS+=(--wayland-text-input-version=3)
+else
+    echo "Running on X11"
+    echo "To use Wayland instead, remove the --socket=x11 permission"
 fi
 
-echo "Passing the following arguments to Electron:" "${FLAGS[@]}"
+echo "Passing the following arguments to Electron:" "${FLAGS[@]}" "$@"
 zypak-wrapper /app/bin/vesktop/vesktop.bin "${FLAGS[@]}" "$@"
