@@ -1,7 +1,7 @@
 app-id: dev.vencord.Vesktop
 
 runtime: org.freedesktop.Platform
-runtime-version: &runtime-version '24.08'
+runtime-version: &runtime-version "24.08"
 sdk: org.freedesktop.Sdk
 
 base: org.electronjs.Electron2.BaseApp
@@ -13,6 +13,7 @@ separate-locales: false
 finish-args:
   - --socket=pulseaudio
   - --socket=x11
+  - --socket=wayland
   - --share=ipc
   - --share=network
   - --talk-name=org.kde.StatusNotifierWatcher # Tray functionalities on KDE
@@ -55,7 +56,8 @@ modules:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/releases/latest
           version-query: .tag_name | sub("v"; "")
-          url-query: .assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml")
+          url-query:
+            .assets[] | select(.name == "dev.vencord.Vesktop.metainfo.xml")
             | .browser_download_url
 
       - type: file
