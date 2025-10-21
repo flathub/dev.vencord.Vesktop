@@ -60,18 +60,18 @@ modules:
             | .browser_download_url
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.8.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.0.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: 8be124595d9e1e18466fea322d5015378531c9c017be161dbc76d1dafcfc5b76be7f99f6d8b0c352124d09f9074278d749db256f58dbf007386439933f863062
+        sha512: c111ca4c5776ddc8a869ed36d152b8227726cdddd3d6389564f18ceefc9ad2d9568ab2afb2991b6801bed201ad8830b20ae337d7b003052807b9c27ba88fee30
         only-arches: [x86_64]
         x-checker-data:
           type: electron-updater
           url: https://github.com/Vencord/Vesktop/releases/latest/download/latest-linux.yml
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.5.8-arm64.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.0-arm64.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: c328c7bff1efc61638d96bf62f6bcbcf7d0c7533b5eb48933dc27f5eb93afe730aea8a7dfcef6b6f7999cc8cf4b8e6adaf1e319d92ad0fea28e1f4181565d119
+        sha512: 5d4494b19d0893a0a7578824c119587ad5f52afceeeecc44a55b9acfd5cc9bfc00fa32b855899c0b133ea35daa7a9d43003f9b5607e678dd0ab25ecc608b8c20
         only-arches: [aarch64]
         x-checker-data:
           type: electron-updater
