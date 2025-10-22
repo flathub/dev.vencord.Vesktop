@@ -35,7 +35,8 @@ modules:
       - ./Vesktop.AppImage --appimage-extract
       - desktop-file-edit --set-key="Exec" --set-value="startvesktop %U" --set-icon=$FLATPAK_ID
         squashfs-root/vesktop.desktop
-      - install -D squashfs-root/usr/share/icons/hicolor/scalable/apps/vesktop.svg /app/share/icons/hicolor/scalable/apps/dev.vencord.Vesktop.png
+        # for some reason the AppImage puts it inside scalable/ directly
+      - install -D squashfs-root/usr/share/icons/hicolor/scalable/vesktop.svg /app/share/icons/hicolor/scalable/apps/dev.vencord.Vesktop.png
       - install -D squashfs-root/vesktop.desktop /app/share/applications/dev.vencord.Vesktop.desktop
       - install -Dm755 startvesktop /app/bin/startvesktop
       - install -D dev.vencord.Vesktop.metainfo.xml -t /app/share/metainfo/
