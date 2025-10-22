@@ -35,11 +35,7 @@ modules:
       - ./Vesktop.AppImage --appimage-extract
       - desktop-file-edit --set-key="Exec" --set-value="startvesktop %U" --set-icon=$FLATPAK_ID
         squashfs-root/vesktop.desktop
-      - |
-        for icon in 16 32 48 64 128 256 512; do
-          install -D squashfs-root/usr/share/icons/hicolor/${icon}x${icon}/apps/vesktop.png \
-              /app/share/icons/hicolor/${icon}x${icon}/apps/dev.vencord.Vesktop.png
-        done
+      - install -D squashfs-root/usr/share/icons/hicolor/scalable/apps/vesktop.svg /app/share/icons/hicolor/scalable/apps/dev.vencord.Vesktop.png
       - install -D squashfs-root/vesktop.desktop /app/share/applications/dev.vencord.Vesktop.desktop
       - install -Dm755 startvesktop /app/bin/startvesktop
       - install -D dev.vencord.Vesktop.metainfo.xml -t /app/share/metainfo/
