@@ -16,7 +16,7 @@ if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
     fi
 
     echo "Running on native Wayland"
-    FLAGS+=(--ozone-platform-hint=auto)
+    FLAGS+=(--ozone-platform=wayland)
     FLAGS+=(--enable-wayland-ime)
     FLAGS+=(--wayland-text-input-version=3)
 else
