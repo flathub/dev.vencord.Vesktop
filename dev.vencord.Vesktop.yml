@@ -47,8 +47,8 @@ modules:
         path: startvesktop
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/download/v1.6.0/dev.vencord.Vesktop.metainfo.xml
-        sha512: 5ca790e6eeca1f51a1305295cd8b13cf2ee10edca1a378ee617a7cf7e0275235532f4f503dd710a6d60ffeace8287b306fd46e1d48b8b1da5467040ecb836963
+        url: https://github.com/Vencord/Vesktop/releases/download/v1.6.1/dev.vencord.Vesktop.metainfo.xml
+        sha512: 87f3e0cfbdd68d1f6140bf59dbdd5207ddefd74085efa40423522d8dd0f793dd47e0c5ede15b7ffedcac0231ad958d4eff082fc9ad430b2064cedee2031e4997
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/releases/latest
@@ -57,18 +57,18 @@ modules:
             | .browser_download_url
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.0.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.1.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: c111ca4c5776ddc8a869ed36d152b8227726cdddd3d6389564f18ceefc9ad2d9568ab2afb2991b6801bed201ad8830b20ae337d7b003052807b9c27ba88fee30
+        sha512: 69cae2488d1ed3471139b1ea5b2874132b022bfe8d8803cc9e980507ec8bb7f144eae0a21cca35fe7592a6c000873813416ffa38785a466da82579fe3ec371eb
         only-arches: [x86_64]
         x-checker-data:
           type: electron-updater
           url: https://github.com/Vencord/Vesktop/releases/latest/download/latest-linux.yml
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.0-arm64.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.1-arm64.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: 5d4494b19d0893a0a7578824c119587ad5f52afceeeecc44a55b9acfd5cc9bfc00fa32b855899c0b133ea35daa7a9d43003f9b5607e678dd0ab25ecc608b8c20
+        sha512: 1c4b6d849e92c61f66c4a1113f0cd247b73e9dd284951acefe4bd1cf12245c4b8eba51aa54679bb9d569726e5419526931493dc48208e3be52d8ef415fa93b3b
         only-arches: [aarch64]
         x-checker-data:
           type: electron-updater
