@@ -1,5 +1,33 @@
 #!/usr/bin/env bash
 
+read -ra SOCAT_ARGS <<<"${SOCAT_ARGS}"
+
+TARGET_SOCKET="${XDG_RUNTIME_DIR}/app/com.discordapp.Discord/discord-ipc-0"
+SOURCE_SOCKET="${XDG_RUNTIME_DIR}/discord-ipc-0"
+
+invoke_socat=true
+# Check if our socket already exists.
+if [ -S "${TARGET_SOCKET}" ]
+then
+    # Check if socat is listening on it.
+    if socat "${SOCAT_ARGS[@]}" -u OPEN:/dev/null "UNIX-CONNECT:${TARGET_SOCKET}"
+    then
+        # socat is still listening on it, make sure not not invoke it again.
+        invoke_socat=false
+    else
+        echo "Cleaning up existing relayed socket"
+        # Socket exists but socat is not listening on it (for whatever reason), delete it so we can invoke socat again.
+        rm -f "${TARGET_SOCKET}"
+    fi
+fi
+
+if [ "${invoke_socat}" = true ]
+then
+    echo "Creating relayed socket"
+    socat "${SOCAT_ARGS[@]}" "UNIX-LISTEN:${TARGET_SOCKET},forever,fork" "UNIX-CONNECT:${SOURCE_SOCKET}" &
+    socat_pid=$!
+fi
+
 export TMPDIR="$XDG_RUNTIME_DIR/app/${FLATPAK_ID:-dev.vencord.Vesktop}"
 
 declare -a FLAGS=(--enable-speech-dispatcher)
@@ -26,3 +54,9 @@ fi
 
 echo "Passing the following arguments to Electron:" "${FLAGS[@]}" "$@"
 zypak-wrapper /app/bin/vesktop/vesktop.bin "${FLAGS[@]}" "$@"
+
+if [ "${invoke_socat}" = true ]
+then
+    echo "Removing relayed socket"
+    kill -SIGTERM "${socat_pid}"
+fi
