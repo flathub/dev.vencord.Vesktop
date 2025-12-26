@@ -41,6 +41,7 @@ modules:
       - install -Dm755 startvesktop /app/bin/startvesktop
       - install -D dev.vencord.Vesktop.metainfo.xml -t /app/share/metainfo/
       - mv squashfs-root /app/bin/vesktop
+      - patch-desktop-filename ${FLATPAK_DEST}/bin/vesktop/resources/app.asar
 
     sources:
       - type: file
