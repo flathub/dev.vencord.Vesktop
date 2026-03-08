@@ -18,7 +18,7 @@ if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
     echo "Running on native Wayland"
 else
     echo "Running on X11"
-    echo "To use Wayland instead, remove the --socket=x11 permission"
+    echo "To use Wayland instead, use a Wayland session"
 fi
 
 echo "Passing the following arguments to Electron:" "${FLAGS[@]}" "$@"
