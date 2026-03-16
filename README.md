@@ -9,10 +9,11 @@ This is the flatpak for [Vesktop](https://github.com/Vencord/Vesktop).
 Vesktop will run through Wayland by default with fallback to x11, as this is the most compatible option.
 Everything should work out of the box, including screen sharing and hardware acceleration.
 
-If you wish to run it through XWayland on Wayland instead, you can do so by adding the `--socket=x11` permission and removing the `--socket=wayland` permission with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal) or by running the following commands:
+If you wish to run it through XWayland on Wayland instead, you can do so by adding the `--socket=x11` permission and removing the `--socket=wayland` and `--socket=x11-fallback` permissions with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal) or by running the following commands:
 
 ```sh
 flatpak override --nosocket=wayland dev.vencord.Vesktop
+flatpak override --nosocket=x11-fallback dev.vencord.Vesktop
 flatpak override --socket=x11 dev.vencord.Vesktop
 ```
 
