@@ -35,8 +35,7 @@ modules:
       - ./Vesktop.AppImage --appimage-extract
       - desktop-file-edit --set-key="Exec" --set-value="startvesktop %U" --set-icon=$FLATPAK_ID
         squashfs-root/vesktop.desktop
-        # for some reason the AppImage puts it inside scalable/ directly
-      - install -D squashfs-root/usr/share/icons/hicolor/scalable/vesktop.svg /app/share/icons/hicolor/scalable/apps/dev.vencord.Vesktop.svg
+      - install -D squashfs-root/usr/share/icons/hicolor/scalable/apps/vesktop.svg /app/share/icons/hicolor/scalable/apps/dev.vencord.Vesktop.svg
       - install -D squashfs-root/vesktop.desktop /app/share/applications/dev.vencord.Vesktop.desktop
       - install -Dm755 startvesktop /app/bin/startvesktop
       - install -D dev.vencord.Vesktop.metainfo.xml -t /app/share/metainfo/
@@ -47,8 +46,8 @@ modules:
         path: startvesktop
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/download/v1.6.5/dev.vencord.Vesktop.metainfo.xml
-        sha512: 9ec8c83f91a1c452b2409996b4d9ea9629e8d7bc5bf65508fc616a30c69bec650f73258f32dda9ba16cfd4567f0dcdbcc6a011b3cce8b3ca12d0920f9bf7c41e
+        url: https://github.com/Vencord/Vesktop/releases/download/v1.6.6/dev.vencord.Vesktop.metainfo.xml
+        sha512: 13413d1ef311147a26c4b5742a5aa5f8948b63e26db8476d579ca07fb8f8d38bb7493110ca4b3d7b363d67eefc637b20eb05d08b68cd0d37759e14bac568341a
         x-checker-data:
           type: json
           url: https://api.github.com/repos/Vencord/Vesktop/releases/latest
@@ -57,18 +56,18 @@ modules:
             | .browser_download_url
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.5.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.6.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: ccb3b325fe3f87dc40b0b3a9c80e28b84948c3ceec81474e627927dd86027616dae0f01e6a50258e28191e7d0d23db923363ea35ff04fb9d2b8caf98991b2b2e
+        sha512: 3b227987ef13f1456212bafe6dd202b5b7db9415a0191b6596664bd847153f17168a19ad93029f23b9d0108ce526fc6c0af45ba4a8183471885aa43328379ab2
         only-arches: [x86_64]
         x-checker-data:
           type: electron-updater
           url: https://github.com/Vencord/Vesktop/releases/latest/download/latest-linux.yml
 
       - type: file
-        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.5-arm64.AppImage
+        url: https://github.com/Vencord/Vesktop/releases/latest/download/Vesktop-1.6.6-arm64.AppImage
         dest-filename: Vesktop.AppImage
-        sha512: cc0c76daf23869ee3f98e4a6e341ee52aa75a77bd7ff9824145f182689e704c2f78c952c2c056274d97f515ff3bf57d1dc7b4116b3e1727d1ef2a8afdfb7b32a
+        sha512: d965e50b8bf1cf05b1d08b25988145badd9edcf5a4e539fc44194099c65d2e84725d679dbda63c9c661105e1ef988610a428c965c0c83819f3ca64a2b9909d2d
         only-arches: [aarch64]
         x-checker-data:
           type: electron-updater
