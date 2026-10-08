@@ -25,6 +25,7 @@ else
         echo "The Wayland socket permission needs to be added to run on Wayland."
     fi
 
+    FLAGS+=(--ozone-platform=x11)
 fi
 
 echo "Passing the following arguments to Electron:" "${FLAGS[@]}" "$@"
