@@ -9,11 +9,11 @@ This is the flatpak for [Vesktop](https://github.com/Vencord/Vesktop).
 Vesktop will run through Wayland by default with fallback to x11, as this is the most compatible option.
 Everything should work out of the box, including screen sharing and hardware acceleration.
 
-If you wish to run it through XWayland on Wayland instead, you can do so by adding the `--socket=x11` permission and removing the `--socket=wayland` and `--socket=fallback-x11` permissions with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal) or by running the following commands:
+If you wish to run it through XWayland on Wayland instead, you can do so by adding the `--socket=x11` permission and removing the `--socket=wayland` and `--socket=x11-fallback` permissions with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal) or by running the following commands:
 
 ```sh
 flatpak override --nosocket=wayland dev.vencord.Vesktop
-flatpak override --nosocket=fallback-x11 dev.vencord.Vesktop
+flatpak override --nosocket=x11-fallback dev.vencord.Vesktop
 flatpak override --socket=x11 dev.vencord.Vesktop
 ```
 
@@ -21,16 +21,12 @@ flatpak override --socket=x11 dev.vencord.Vesktop
 
 Due to the Flatpak sandbox, Vesktop only has access to a very limited set of files, which messes with file Drag & Drop and Copy Paste.
 
-Drag & drop bypasses the document portal — the app receives a real `file://` URI — so files outside the granted directories resolve as 0 bytes and Discord reports "Upload Failed: File cannot be empty". The file picker is unaffected because it goes through the portal.
-
 As a workaround, you can either use solely the built-in file picker, or you can give Vesktop
-access to your files using [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal) or by running the following command:
+access to your home directory (& other desired directories) using [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal) or by running the following command:
 
 ```sh
-flatpak override --filesystem=host dev.vencord.Vesktop
+flatpak override --filesystem=home dev.vencord.Vesktop
 ```
-
-`host` rather than `home` is needed if you drag files from external mounts such as `/media/...` or `/mnt/...`, which `home` does not cover.
 
 ## Tray icons
 
