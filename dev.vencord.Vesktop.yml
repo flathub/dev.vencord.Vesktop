@@ -18,6 +18,7 @@ finish-args:
   - --share=network
   - --talk-name=org.kde.StatusNotifierWatcher # Tray functionalities on KDE
   - --talk-name=com.canonical.AppMenu.Registrar
+  - --talk-name=org.freedesktop.Notifications # The notification portal can't pass activation tokens, so clicking a notification can't focus the window on Wayland
   - --device=all # Needed for GPU acceleration and the webcam
   - --filesystem=xdg-videos:ro
   - --filesystem=xdg-pictures:ro
