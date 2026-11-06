@@ -34,21 +34,47 @@ To get a working Tray Icon on GNOME, install the [appindicator-support](https://
 
 ## Discord Rich Presence
 
-Game Activity on the flatpak is very limited, as the sandbox does not allow Vesktop to scan running processes.
+Game Activity on the Flatpak is very limited, as the sandbox does not allow Vesktop to scan running processes.
 This means that Rich Presence will only work for games that explicitly support it.
 
 Follow the instructions below to enable Rich Presence for such applications.
 
 ### Native applications
-A solution that works short-term is to run `ln -sf $XDG_RUNTIME_DIR/{.flatpak/dev.vencord.Vesktop/xdg-run,}/discord-ipc-0`.
-For something longer lasting, run the following:
+
+For a temporary solution, run:
+
+```sh
+mkdir -p "$XDG_RUNTIME_DIR/app/com.discordapp.Discord"
+
+ln -sfn \
+  "$XDG_RUNTIME_DIR/.flatpak/dev.vencord.Vesktop/xdg-run/discord-ipc-0" \
+  "$XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-0"
+
+ln -sfn \
+  app/com.discordapp.Discord/discord-ipc-0 \
+  "$XDG_RUNTIME_DIR/discord-ipc-0"
+```
+
+For a persistent solution, run:
 
 ```sh
 mkdir -p ~/.config/user-tmpfiles.d
-echo 'L %t/discord-ipc-0 - - - - .flatpak/dev.vencord.Vesktop/xdg-run/discord-ipc-0' > ~/.config/user-tmpfiles.d/discord-rpc.conf
+
+cat > ~/.config/user-tmpfiles.d/discord-rpc.conf <<'EOF'
+d %t/app/com.discordapp.Discord 0755 - - -
+L %t/app/com.discordapp.Discord/discord-ipc-0 - - - - %t/.flatpak/dev.vencord.Vesktop/xdg-run/discord-ipc-0
+L %t/discord-ipc-0 - - - - app/com.discordapp.Discord/discord-ipc-0
+EOF
+
 systemctl --user enable --now systemd-tmpfiles-setup.service
+systemd-tmpfiles --user --create ~/.config/user-tmpfiles.d/discord-rpc.conf
 ```
-Now, native applications will be able to use Rich Presence on every system start.
+
+Native applications will now be able to use Rich Presence across system restarts.
+
+The compatibility symlink also supports Flatpak applications that expect Discord's IPC socket at `app/com.discordapp.Discord/discord-ipc-0`.
+
+**Note:** Some Flatpak applications create their own Discord IPC symlinks inside their private runtime directories. If a stale symlink prevents an application from launching, it may need to be removed separately.
 
 ### Flatpak applications
 <!-- TAKEN FROM https://github.com/flathub/com.discordapp.Discord/wiki/Rich-Precense-(discord-rpc) -->
